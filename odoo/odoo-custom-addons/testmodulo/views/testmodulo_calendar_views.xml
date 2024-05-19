@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <!-- Menu Root -->
+        <menuitem name="Menu Testmodulo" id="testmodulo.menu_root" sequence="1"/>
+
+        <!-- Event Calendar View -->
+        <record id="testmodulo_event_calendar_view" model="ir.ui.view">
+            <field name="name">testmodulo.event.calendar</field>
+            <field name="model">testmodulo.event</field>
+            <field name="arch" type="xml">
+                <calendar string="Eventos" date_start="start_datetime" date_stop="end_datetime">
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="description"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Cleaning Schedule Calendar View -->
+        <record id="testmodulo_cleaning_schedule_calendar_view" model="ir.ui.view">
+            <field name="name">testmodulo.cleaning.schedule.calendar</field>
+            <field name="model">testmodulo.cleaning_schedule</field>
+            <field name="arch" type="xml">
+                <calendar string="Horario de Limpieza" date_start="start_datetime" date_stop="end_datetime">
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="description"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Touristic Outing Calendar View -->
+        <record id="testmodulo_touristic_outing_calendar_view" model="ir.ui.view">
+            <field name="name">testmodulo.touristic.outing.calendar</field>
+            <field name="model">testmodulo.touristic_outing</field>
+            <field name="arch" type="xml">
+                <calendar string="Salidas Turísticas" date_start="start_datetime" date_stop="end_datetime">
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="description"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Actions for Views -->
+        <record id="testmodulo.event_action" model="ir.actions.act_window">
+            <field name="name">Eventos</field>
+            <field name="res_model">testmodulo.event</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="testmodulo_event_calendar_view"/>
+        </record>
+
+        <record id="testmodulo.cleaning_schedule_action" model="ir.actions.act_window">
+            <field name="name">Horario de Limpieza</field>
+            <field name="res_model">testmodulo.cleaning_schedule</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="testmodulo_cleaning_schedule_calendar_view"/>
+        </record>
+
+        <record id="testmodulo.touristic_outing_action" model="ir.actions.act_window">
+            <field name="name">Salidas Turísticas</field>
+            <field name="res_model">testmodulo.touristic_outing</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="testmodulo_touristic_outing_calendar_view"/>
+        </record>
+
+        <!-- Menu Items for Each Action -->
+        <menuitem name="Eventos" id="testmodulo.menu_event" parent="testmodulo.menu_root" action="testmodulo.event_action" sequence="2"/>
+        <menuitem name="Horario de Limpieza" id="testmodulo.menu_cleaning_schedule" parent="testmodulo.menu_root" action="testmodulo.cleaning_schedule_action" sequence="3"/>
+        <menuitem name="Salidas Turísticas" id="testmodulo.menu_touristic_outing" parent="testmodulo.menu_root" action="testmodulo.touristic_outing_action" sequence="4"/>
+    </data>
+</odoo>

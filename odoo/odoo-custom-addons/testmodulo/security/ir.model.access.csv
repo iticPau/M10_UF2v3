@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_testmodulo_user,Testmodulo User Access,ir_module_module,base.group_user,1,0,0,0
+access_testmodulo_manager,Testmodulo Manager Access,ir_module_module,base.group_manager,1,1,0,0
+access_event_user,Event User Access,testmodulo.event,base.group_user,1,1,1,1
+access_event_manager,Event Manager Access,testmodulo.event,base.group_manager,1,1,1,1
+access_cleaning_schedule_user,Cleaning Schedule User Access,testmodulo.cleaning_schedule,base.group_user,1,1,1,1
+access_cleaning_schedule_manager,Cleaning Schedule Manager Access,testmodulo.cleaning_schedule,base.group_manager,1,1,1,1
+access_touristic_outing_user,Touristic Outing User Access,testmodulo.touristic_outing,base.group_user,1,1,1,1
+access_touristic_outing_manager,Touristic Outing Manager Access,testmodulo.touristic_outing,base.group_manager,1,1,1,1

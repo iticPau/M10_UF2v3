@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Odoo15",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/odoo13/odoo/odoo-bin",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "-c",
+                "/home/odoo13/odoo/odoo.conf",
+                "--limit-time-real",
+                "99999"
+            ]
+        }
+    ]
+}
