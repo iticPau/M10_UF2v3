@@ -1,30 +1,29 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 from odoo.http import request
-from odoo.http import route
 
-class controllers(http.Controller):
+class Controllers(http.Controller):
 
     @http.route('/testmodulo/events', type='json', auth='user')
-    def get_events(self, start_date, end_date):
+    def get_events(self, start_datetime, end_datetime):
         events = request.env['testmodulo.event'].search([
-            ('start_date', '>=', start_date),
-            ('end_date', '<=', end_date)
+            ('start_datetime', '>=', start_datetime),
+            ('end_datetime', '<=', end_datetime)
         ])
-        return events.read(['name', 'start_date', 'end_date', 'description'])
+        return events.read(['name', 'start_datetime', 'end_datetime', 'description', 'customer_type'])
 
     @http.route('/testmodulo/cleaning_schedule', type='json', auth='user')
-    def get_cleaning_schedule(self, start_date, end_date):
+    def get_cleaning_schedule(self, start_datetime, end_datetime):
         cleaning_schedule = request.env['testmodulo.cleaning_schedule'].search([
-            ('date', '>=', start_date),
-            ('date', '<=', end_date)
+            ('start_datetime', '>=', start_datetime),
+            ('end_datetime', '<=', end_datetime)
         ])
-        return cleaning_schedule.read(['name', 'date', 'description'])
+        return cleaning_schedule.read(['name', 'start_datetime', 'end_datetime', 'description'])
 
     @http.route('/testmodulo/touristic_outings', type='json', auth='user')
-    def get_touristic_outings(self, start_date, end_date):
+    def get_touristic_outings(self, start_datetime, end_datetime):
         touristic_outings = request.env['testmodulo.touristic_outing'].search([
-            ('date', '>=', start_date),
-            ('date', '<=', end_date)
+            ('start_datetime', '>=', start_datetime),
+            ('end_datetime', '<=', end_datetime)
         ])
-        return touristic_outings.read(['name', 'date', 'description'])
+        return touristic_outings.read(['name', 'start_datetime', 'end_datetime', 'description'])
