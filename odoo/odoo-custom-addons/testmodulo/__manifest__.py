@@ -9,10 +9,7 @@
     'website': 'http://www.yourwebsite.com',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/testmodulo_views.xml',
+        'views/testmodulo_calendar_views.xml',
     ],
-    'installable': True,
-    'application': True,
-    'auto_install': False,
 }
+

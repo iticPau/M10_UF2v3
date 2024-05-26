@@ -8,7 +8,7 @@
             <field name="name">testmodulo.event.calendar</field>
             <field name="model">testmodulo.event</field>
             <field name="arch" type="xml">
-                <calendar string="Eventos" date_start="start_datetime" date_stop="end_datetime">
+                <calendar string="Eventos" date_start="start_datetime" date_stop="end_datetime" color="color">
                     <field name="name"/>
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
@@ -17,6 +17,29 @@
                 </calendar>
             </field>
         </record>
+
+        <!-- Event Statistic View -->
+        <record id="testmodulo_event_statistic_view" model="ir.ui.view">
+            <field name="name">testmodulo.event.statistic.tree</field>
+            <field name="model">testmodulo.event</field>
+            <field name="arch" type="xml">
+                <tree string="Eventos por Tipo de Cliente">
+                    <field name="customer_type"/>
+                    <field name="event_count" string="Cantidad de Eventos"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action for Event Statistic View -->
+        <record id="testmodulo_event_statistic_action" model="ir.actions.act_window">
+            <field name="name">Estadísticas de Eventos por Tipo de Cliente</field>
+            <field name="res_model">testmodulo.event</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="testmodulo_event_statistic_view"/>
+        </record>
+
+        <!-- Menu Item for Event Statistic Action -->
+        <menuitem name="Estadísticas de Eventos" id="testmodulo.menu_event_statistic" parent="testmodulo.menu_root" action="testmodulo_event_statistic_action" sequence="5"/>
 
         <!-- Cleaning Schedule Calendar View -->
         <record id="testmodulo_cleaning_schedule_calendar_view" model="ir.ui.view">
@@ -28,6 +51,7 @@
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
                     <field name="description"/>
+                    <field name="cleaning_area"/>
                 </calendar>
             </field>
         </record>
