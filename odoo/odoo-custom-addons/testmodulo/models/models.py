@@ -15,6 +15,7 @@ class CleaningSchedule(models.Model):
         ('D1-D10', 'D1-D10'),
         ('E1-E10', 'E1-E10')
     ], string='Áreas de limpieza', required=True)
+
 class Event(models.Model):
     _name = 'testmodulo.event'
     _description = 'Eventos'
@@ -26,22 +27,15 @@ class Event(models.Model):
     customer_type = fields.Selection([
         ('bronce', 'Bronce'),
         ('oro', 'Oro'),
-        ('diamante', 'Diamante'),
-        ('todos','Todos')
+        ('diamante', 'Diamante')
     ], string='Tipo del cliente', required=True)
-    color = fields.Integer(string="Color")
-    event_count = fields.Integer(string="Cantidad de eventos", compute='_compute_event_count')
-    
+    color = fields.Integer(string="Color", compute='_compute_color')
+    event_count = fields.Integer(string="Cantidad de eventos", compute='_compute_event_count', store=True)
+
     @api.depends('customer_type')
     def _compute_event_count(self):
         for record in self:
             record.event_count = self.env['testmodulo.event'].search_count([('customer_type', '=', record.customer_type)])
-    
-    @api.model
-    def count_events_by_customer_type(self):
-        counts = self.read_group([('customer_type', '!=', False)], ['customer_type'], ['customer_type'])
-        return {group['customer_type']: group['customer_type_count'] for group in counts}
-
 
     @api.depends('customer_type')
     def _compute_color(self):
@@ -49,12 +43,11 @@ class Event(models.Model):
             if record.customer_type == 'bronce':
                 record.color = 1  # Rojo
             elif record.customer_type == 'oro':
-                record.color = 2  # Amarillo
+                record.color = 2  # Naranja
             elif record.customer_type == 'diamante':
-                record.color = 3  # Azul
+                record.color = 3  # Amarillo
             else:
-                record.color = 0  
-    
+                record.color = 0
 
 class TouristicOuting(models.Model):
     _name = 'testmodulo.touristic_outing'

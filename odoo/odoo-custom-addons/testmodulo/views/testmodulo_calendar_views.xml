@@ -30,11 +30,23 @@
             </field>
         </record>
 
+        <!-- Event Graph View -->
+        <record id="view_event_graph" model="ir.ui.view">
+            <field name="name">event.graph</field>
+            <field name="model">testmodulo.event</field>
+            <field name="arch" type="xml">
+                <graph string="Eventos por Tipo de Cliente" type="bar">
+                    <field name="customer_type" type="row"/>
+                    <field name="event_count" type="measure" string="Cantidad de Eventos"/>
+                </graph>
+            </field>
+        </record>
+
         <!-- Action for Event Statistic View -->
         <record id="testmodulo_event_statistic_action" model="ir.actions.act_window">
             <field name="name">Estadísticas de Eventos por Tipo de Cliente</field>
             <field name="res_model">testmodulo.event</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,graph</field>
             <field name="view_id" ref="testmodulo_event_statistic_view"/>
         </record>
 
